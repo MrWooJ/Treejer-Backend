@@ -1,0 +1,17 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongoDs": {
+    "host": "${MONGO_SABTDB_HOST}",
+    "username": "${MONGO_SABTDB_USERNAME}",
+    "password": "${MONGO_SABTDB_PASSWORD}",
+    "port": "${MONGO_SABTDB_PORT}",
+    "url": "${MONGO_SABTDB_URL}",
+    "database": "${MONGO_SABTDB_DATABASE}",
+    "name": "mongoDs",
+    "maxRows": 99999,
+    "connector": "mongodb"
+  }
+}
