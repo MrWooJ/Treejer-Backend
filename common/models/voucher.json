@@ -1,0 +1,43 @@
+{
+  "name": "voucher",
+  "base": "PersistedModel",
+  "strict": true,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Fetcher": {}
+  },
+  "properties": {
+    "clientId": {
+      "type": "string",
+      "required": true
+    },
+    "createDate": {
+      "type": "number",
+      "required": true
+    },
+    "lastUpdate": {
+      "type": "number",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    },
+    "numberOfUsage": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "usageCapacity": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
