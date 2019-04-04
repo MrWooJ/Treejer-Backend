@@ -10,6 +10,18 @@
     "Fetcher": {}
   },
   "properties": {
+    "clientId": {
+      "type": "string",
+      "required": true
+    },
+    "createDate": {
+      "type": "number",
+      "required": true
+    },
+    "lastUpdate": {
+      "type": "number",
+      "required": true
+    },
     "type": {
       "type": "string",
       "required": true
