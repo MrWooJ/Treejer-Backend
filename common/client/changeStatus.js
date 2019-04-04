@@ -50,7 +50,7 @@ module.exports = async Client => {
     }],
     http: {
       path: '/:clientId/changeStatus/:invitationCode',
-      verb: 'POST',
+      verb: 'PUT',
       status: 200,
       errorStatus: 400
     },

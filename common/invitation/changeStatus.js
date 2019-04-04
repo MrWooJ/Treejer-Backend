@@ -46,7 +46,7 @@ module.exports = async Invitation => {
     }],
     http: {
       path: '/:invitationCode/changeStatus/:newStatus',
-      verb: 'POST',
+      verb: 'PUT',
       status: 200,
       errorStatus: 400
     },
