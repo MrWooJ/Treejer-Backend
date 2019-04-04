@@ -1,50 +1,41 @@
 {
-  "name": "client",
-  "base": "User",
+  "name": "tree",
+  "base": "PersistedModel",
   "strict": true,
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "hidden": [
-    "realm",
-    "emailVerified"
-  ],
   "mixins": {
     "Fetcher": {}
   },
   "properties": {
-    "email": {
+    "type": {
       "type": "string",
-      "required": true,
-      "index": true
-    },
-    "username": {
-      "type": "string",
-      "required": true,
-      "index": true
-    },
-    "firstname": {
-      "type": "string",
-      "required": true,
-      "index": true
-    },
-    "lastname": {
-      "type": "string",
-      "required": true,
-      "index": true
-    },
-    "password": {
-      "type": "string",
-      "required": true,
-      "index": true
+      "required": true
     },
     "status": {
       "type": "string",
       "required": true
     },
-    "lastUpdate": {
-      "type": "number",
+    "planter": {
+      "type": "string",
+      "required": true
+    },
+    "conserver": {
+      "type": "string",
+      "required": true
+    },
+    "ranger": {
+      "type": "string",
+      "required": true
+    },
+    "o2Rate": {
+      "type": "string",
+      "required": true
+    },
+    "treeHashId": {
+      "type": "string",
       "required": true
     }
   },

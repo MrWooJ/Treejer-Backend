@@ -43,5 +43,9 @@
   "invitation": {
     "dataSource": "mongoDs",
     "public": true
+  },
+  "tree": {
+    "dataSource": "mongoDs",
+    "public": true
   }
 }
