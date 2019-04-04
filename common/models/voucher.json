@@ -26,6 +26,10 @@
       "type": "string",
       "required": true
     },
+    "type": {
+      "type": "string",
+      "required": true
+    },
     "numberOfUsage": {
       "type": "number",
       "required": true,
