@@ -9,6 +9,10 @@ module.exports = async Receipt => {
   const vars = app.vars;
 
   Receipt.createLogic = async ctx => {
+    if (ctx.args.data.items.length === 0) {
+      throw createError(400, 'Error! Item list is empty which cannot be.');
+    }
+
     ctx.args.data.status = vars.config.receiptStatus.pending;
     ctx.args.data.createDate = utility.getUnixTimeStamp();
     ctx.args.data.lastUpdate = utility.getUnixTimeStamp();

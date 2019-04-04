@@ -9,6 +9,10 @@ module.exports = async Receipt => {
   const vars = app.vars;
 
   Receipt.updateLogic = async ctx => {
+    if (ctx.args.data.items.length === 0) {
+      throw createError(400, 'Error! Item list is empty which cannot be.');
+    }
+
     let receiptModel = await Receipt.fetchModel(ctx.args.data.id.toString());
     if (receiptModel.status !== vars.config.receiptStatus.pending) {
       throw createError(403, 'Error! Only pending receipts can be edited.');
@@ -36,8 +40,7 @@ module.exports = async Receipt => {
 
   Receipt.beforeRemote('updateById', async ctx => {
     validator(ctx.args, {
-      white: ['type', 'price', 'items'],
-      required: ['type', 'price', 'items']
+      white: ['type', 'price', 'items']
     });
 
     await Receipt.updateLogic(ctx);
