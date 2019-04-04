@@ -1,0 +1,26 @@
+{
+  "name": "invitation",
+  "base": "PersistedModel",
+  "strict": true,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Fetcher": {}
+  },
+  "properties": {
+    "status": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
