@@ -4,6 +4,7 @@ const receiptStatus = require('../config/receipt.status.js');
 const receiptType = require('../config/receipt.type.js');
 const treeStatus = require('../config/tree.status.js');
 const treeType = require('../config/tree.type.js');
+const voucherStatus = require('../config/voucher.status.js');
 
 module.exports = server => {
   server.vars = {
@@ -13,7 +14,8 @@ module.exports = server => {
       receiptStatus,
       receiptType,
       treeStatus,
-      treeType
+      treeType,
+      voucherStatus
     },
     const: {
     }
