@@ -1,6 +1,10 @@
 {
   "name": "client",
   "base": "User",
+  "strict": true,
+  "mixins": {
+    "Fetcher": {}
+  },
   "idInjection": true,
   "options": {
     "validateUpsert": true
