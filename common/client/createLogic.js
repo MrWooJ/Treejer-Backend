@@ -8,6 +8,7 @@ module.exports = async Client => {
   const vars = app.vars;
   
   Client.createLogic = async ctx => {
+    ctx.args.data.emailVerified = true;
     ctx.args.data.status = vars.config.clientStatus.waitList;
     ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
     return;
@@ -17,8 +18,8 @@ module.exports = async Client => {
 
   Client.beforeRemote('create', async ctx => {
     validator(ctx.args.data, {
-      white: ['username', 'password'],
-      required: ['username', 'password']
+      white: ['username', 'email', 'firstname', 'lastname', 'password'],
+      required: ['username', 'email', 'firstname', 'lastname', 'password']
     });
 
     return await Client.createLogic(ctx);
