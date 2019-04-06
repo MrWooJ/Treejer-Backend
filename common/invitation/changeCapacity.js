@@ -16,7 +16,7 @@ module.exports = async Invitation => {
         'Error! Capacity can be changed only for available invitations.');
     }
 
-    if (Number(newCapacity) <= invitationModel.numberOfUsage) {
+    if (Number(newCapacity) <= Number(invitationModel.numberOfUsage)) {
       throw createError(400, 
         'Error! Capacity cannot be lower than current number usages.');
     }
