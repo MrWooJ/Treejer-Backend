@@ -9,6 +9,7 @@ module.exports = async Invitation => {
 
 	Invitation.validatesInclusionOf('status', { in: statusList });
 
+  require('../invitation/changeCapacity')(Invitation);
   require('../invitation/createLogic')(Invitation);
   require('../invitation/changeStatus')(Invitation);
 
