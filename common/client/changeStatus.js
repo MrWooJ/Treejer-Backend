@@ -1,5 +1,4 @@
 const utility = rootRequire('helper/utility');
-let createError = require('http-errors');
 
 let app = rootRequire('server/server');
 
@@ -11,16 +10,7 @@ module.exports = async Client => {
     let clientModel = await Client.fetchModel(clientId.toString());
 
     let Invitation = app.models.invitation;
-    let invitationModel = 
-      await Invitation.fetchModel(invitationCode.toString());
-
-    if (invitationModel.status === vars.config.invitation.status.used) {
-      throw createError(400, 
-        'Error! The provided invitation code is used before.');
-    }
-
-    await Invitation.changeStatus(
-      invitationCode.toString(), vars.config.invitation.status.used);
+    await Invitation.increaseUsage(invitationCode.toString());
 
     let clientUpdatedModel = await clientModel.updateAttribute(
       status, vars.config.clientStatus.available);
