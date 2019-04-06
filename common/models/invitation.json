@@ -17,6 +17,15 @@
     "lastUpdate": {
       "type": "number",
       "required": true
+    },
+    "numberOfUsage": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "usageCapacity": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
