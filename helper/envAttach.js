@@ -7,6 +7,8 @@ const treeType = require('../config/tree.type.js');
 const voucherStatus = require('../config/voucher.status.js');
 const voucherType = require('../config/voucher.type.js');
 
+const treejerCompany = 'Treejer';
+
 module.exports = server => {
   server.vars = {
     config: {
@@ -20,6 +22,7 @@ module.exports = server => {
       voucherType
     },
     const: {
+      treejerCompany
     }
   };
 };
