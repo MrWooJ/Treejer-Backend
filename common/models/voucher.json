@@ -44,6 +44,12 @@
         "object"
       ],
       "required": true
+    },
+    "receivers": {
+      "type": [
+        "string"
+      ],
+      "required": true
     }
   },
   "validations": [],
