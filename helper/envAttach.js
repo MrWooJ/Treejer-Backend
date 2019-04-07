@@ -8,6 +8,7 @@ const voucherStatus = require('../config/voucher.status.js');
 const voucherType = require('../config/voucher.type.js');
 
 const treejerCompany = 'Treejer';
+const maximumUsageCapacity = 100;
 
 module.exports = server => {
   server.vars = {
@@ -22,7 +23,8 @@ module.exports = server => {
       voucherType
     },
     const: {
-      treejerCompany
+      treejerCompany,
+      maximumUsageCapacity
     }
   };
 };
