@@ -16,6 +16,7 @@ module.exports = async Voucher => {
 
 	Voucher.validatesInclusionOf('status', { in: statusList });
 
+  require('../voucher/changeCapacity')(Voucher);
   require('../voucher/changeStatus')(Voucher);
   require('../voucher/createLogic')(Voucher);
 
