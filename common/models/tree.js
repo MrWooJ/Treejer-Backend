@@ -18,6 +18,7 @@ module.exports = async Tree => {
 
   require('../tree/changeStatus')(Tree);
   require('../tree/createLogic')(Tree);
+  require('../tree/reclaim')(Tree);
   require('../tree/setTreeHash')(Tree);
 
 };
