@@ -19,7 +19,7 @@ module.exports = async Invitation => {
     let lastStatus = invitationModel.status;
     if (Number(invitationModel.numberOfUsage) + 1 === 
         Number(invitationModel.usageCapacity)) {
-      lastStatus = vars.config.invitationStatus.used;
+      lastStatus = vars.config.invitationStatus.finished;
     }
 
     let updatedInvitationModel = await invitationModel.updateAttributes({

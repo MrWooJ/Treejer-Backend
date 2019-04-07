@@ -1,4 +1,4 @@
 module.exports = {
   available: 'Available',
-  used: 'Used'
+  finished: 'Finished'
 };
