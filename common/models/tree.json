@@ -23,7 +23,7 @@
       "required": true
     },
     "type": {
-      "type": "string",
+      "type": "object",
       "required": true
     },
     "status": {
