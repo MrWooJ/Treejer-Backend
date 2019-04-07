@@ -19,5 +19,6 @@ module.exports = async Voucher => {
   require('../voucher/changeCapacity')(Voucher);
   require('../voucher/changeStatus')(Voucher);
   require('../voucher/createLogic')(Voucher);
+  require('../voucher/increaseUsage')(Voucher);
 
 };
