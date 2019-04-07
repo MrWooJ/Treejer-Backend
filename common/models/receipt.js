@@ -17,6 +17,7 @@ module.exports = async Receipt => {
 	Receipt.validatesInclusionOf('status', { in: statusList });
 
   require('../receipt/createLogic')(Receipt);
+  require('../receipt/finalizeReceipt')(Receipt);
   require('../receipt/updateLogic')(Receipt);
 
 };
