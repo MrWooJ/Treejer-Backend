@@ -16,4 +16,6 @@ module.exports = async Voucher => {
 
 	Voucher.validatesInclusionOf('status', { in: statusList });
 
+  require('../voucher/createLogic')(Voucher);
+
 };
