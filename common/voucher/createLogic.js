@@ -61,7 +61,7 @@ module.exports = async Voucher => {
       }
     }],
     http: {
-      path: '/gift/createLogic',
+      path: '/createLogic',
       verb: 'POST',
       status: 200,
       errorStatus: 400
