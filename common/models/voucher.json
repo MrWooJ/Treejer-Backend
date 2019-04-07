@@ -38,6 +38,12 @@
     "usageCapacity": {
       "type": "number",
       "required": true
+    },
+    "items": {
+      "type": [
+        "object"
+      ],
+      "required": true
     }
   },
   "validations": [],
