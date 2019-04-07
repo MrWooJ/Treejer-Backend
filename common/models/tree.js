@@ -16,6 +16,7 @@ module.exports = async Tree => {
 
 	Tree.validatesInclusionOf('status', { in: statusList });
 
+  require('../tree/changeStatus')(Tree);
   require('../tree/createLogic')(Tree);
-  
+
 };
