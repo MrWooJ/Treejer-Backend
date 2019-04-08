@@ -52,7 +52,7 @@
   "relations": {
     "trees": {
       "type": "hasMany",
-      "model": "receipt",
+      "model": "tree",
       "foreignKey": "clientId"
     }
   },
