@@ -54,6 +54,11 @@
       "type": "hasMany",
       "model": "tree",
       "foreignKey": "clientId"
+    },
+    "receipts": {
+      "type": "hasMany",
+      "model": "receipt",
+      "foreignKey": "clientId"
     }
   },
   "acls": [],
