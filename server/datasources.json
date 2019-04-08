@@ -11,5 +11,22 @@
     "name": "mongoDs",
     "maxRows": 99999,
     "connector": "mongodb"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [{
+      "type": "smtp",
+      "host": "${EMAIL_SMTP_HOST}",
+      "secure": false,
+      "port": "${EMAIL_SMTP_PORT}",
+      "tls": {
+        "rejectUnauthorized": false
+      },
+      "auth": {
+        "user": "${EMAIL_AUTH_USERNAME}",
+        "pass": "${EMAIL_AUTH_PASSWORD}"
+      }
+    }]
   }
 }
