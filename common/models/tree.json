@@ -52,7 +52,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "clientRel": {
+      "type": "belongsTo",
+      "model": "client",
+      "foreignKey": "clientId"
+    }
+  },
   "acls": [],
   "methods": {}
 }
