@@ -55,5 +55,9 @@
   "voucher": {
     "dataSource": "mongoDs",
     "public": true
+  },
+  "email": {
+    "dataSource": "emailDs",
+    "public": false
   }
 }
