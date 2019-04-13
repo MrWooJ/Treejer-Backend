@@ -24,6 +24,7 @@ module.exports = async Receipt => {
 	Receipt.validatesInclusionOf('method', { in: methodList });
 
   require('../receipt/createLogic')(Receipt);
+  require('../receipt/exchange')(Receipt);
   require('../receipt/finalizeReceipt')(Receipt);
   require('../receipt/updateLogic')(Receipt);
 
