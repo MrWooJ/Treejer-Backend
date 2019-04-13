@@ -16,6 +16,13 @@ module.exports = async Receipt => {
 
 	Receipt.validatesInclusionOf('status', { in: statusList });
 
+  let methodList = [];
+  for (let key in app.vars.config.receiptMethod) {
+    methodList.push(app.vars.config.receiptMethod[key]);
+	}
+
+	Receipt.validatesInclusionOf('method', { in: methodList });
+
   require('../receipt/createLogic')(Receipt);
   require('../receipt/finalizeReceipt')(Receipt);
   require('../receipt/updateLogic')(Receipt);
