@@ -38,6 +38,10 @@
       "type": "number",
       "required": true
     },
+    "ethModel": {
+      "type": "object",
+      "required": false
+    },
     "items": {
       "type": [
         "object"
