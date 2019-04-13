@@ -30,6 +30,10 @@
       "type": "string",
       "required": true
     },
+    "method": {
+      "type": "string",
+      "required": true
+    },
     "price": {
       "type": "number",
       "required": true

@@ -38,8 +38,8 @@ module.exports = async Receipt => {
 
   Receipt.beforeRemote('create', async ctx => {
     validator(ctx.args, {
-      white: ['clientId', 'type', 'price', 'items'],
-      required: ['clientId', 'type', 'price', 'items']
+      white: ['clientId', 'type', 'price', 'items', 'method'],
+      required: ['clientId', 'type', 'price', 'items', 'method']
     });
 
     await Receipt.createLogic(ctx);
