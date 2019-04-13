@@ -14,8 +14,6 @@ module.exports = async Receipt => {
     }
 
     ctx.args.data.status = vars.config.receiptStatus.pending;
-    ctx.args.data.createDate = utility.getUnixTimeStamp();
-    ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
 
     let price = 0;
     for (let i = 0; i < ctx.args.data.items.length; i++) {
@@ -30,6 +28,14 @@ module.exports = async Receipt => {
     if (price !== Number(ctx.args.data.price)) {
       throw createError(400, 'Error! Receipt price is not correct.');
     }
+
+    if (ctx.args.data.method === vars.config.receiptMethod.ethereum) {
+      ctx.args.data.ethModel = 
+        await Receipt.exchange(Number(ctx.args.data.price));
+    }
+
+    ctx.args.data.createDate = utility.getUnixTimeStamp();
+    ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
 
     return;
   };

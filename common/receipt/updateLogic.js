@@ -17,7 +17,6 @@ module.exports = async Receipt => {
     if (receiptModel.status !== vars.config.receiptStatus.pending) {
       throw createError(403, 'Error! Only pending receipts can be edited.');
     }
-    ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
 
     let price = 0;
     for (let i = 0; i < ctx.args.data.items.length; i++) {
@@ -33,6 +32,13 @@ module.exports = async Receipt => {
       throw createError(400, 'Error! Receipt price is not correct.');
     }
 
+    if (receiptModel.method === vars.config.receiptMethod.ethereum) {
+      ctx.args.data.ethModel = 
+        await Receipt.exchange(Number(ctx.args.data.price));
+    }
+
+    ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
+    
     return;
   };
 
@@ -40,7 +46,8 @@ module.exports = async Receipt => {
 
   Receipt.beforeRemote('updateById', async ctx => {
     validator(ctx.args, {
-      white: ['type', 'price', 'items']
+      white: ['type', 'price', 'items'],
+      required: ['type', 'price', 'items']
     });
 
     await Receipt.updateLogic(ctx);
