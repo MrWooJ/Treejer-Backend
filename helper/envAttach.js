@@ -1,5 +1,6 @@
 const clientStatus = require('../config/client.status.js');
 const invitationStatus = require('../config/invitation.status.js');
+const receiptMethod = require('../config/receipt.method.js');
 const receiptStatus = require('../config/receipt.status.js');
 const receiptType = require('../config/receipt.type.js');
 const treeStatus = require('../config/tree.status.js');
@@ -15,6 +16,7 @@ module.exports = server => {
     config: {
       clientStatus,
       invitationStatus,
+      receiptMethod,
       receiptStatus,
       receiptType,
       treeStatus,
