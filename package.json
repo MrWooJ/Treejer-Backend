@@ -15,13 +15,14 @@
     "cors": "^2.5.2",
     "helmet": "^3.10.0",
     "http-errors": "^1.6.3",
-    "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^3.0.0",
     "loopback": "^3.22.0",
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.2.0",
     "loopback-component-storage": "^3.3.1",
-    "loopback-connector-mongodb": "^3.9.2"
+    "loopback-connector-mongodb": "^3.9.2",
+    "serve-favicon": "^2.0.1",
+    "strong-error-handler": "^3.0.0",
+    "unirest": "^0.6.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
