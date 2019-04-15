@@ -3,7 +3,7 @@ module.exports = async server => {
   // remove users email validation
   delete server.models.User.validations.email;
 
-  let { customer, Role, RoleMapping } = server.models;
+  let { Client, Role, RoleMapping } = server.models;
   // list of users data
   let users = [
     {
@@ -31,13 +31,13 @@ module.exports = async server => {
       password: 'Tr33j3r5upp0rtThr33'
     }
   ];
-  
+
   // fetch all script built users
-  let fetchedUsers = await customer.find({ where: { built: 'script' } });
+  let fetchedUsers = await Client.find({ where: { built: 'script' } });
   // check if script built users exists or not
   if (fetchedUsers.length === 0) {
     // create users script in case does not exist
-    let createdUsers = await customer.create(users);
+    let createdUsers = await Client.create(users);
     // attach role to users one by one
     let role = await Role.create({ name: 'admin' });
     for (let i = 0; i < users.length; i++) {
