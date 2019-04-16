@@ -22,14 +22,14 @@ module.exports = async Receipt => {
     }
     else if (receiptModel.type === vars.config.receiptType.giftToFriend) {
       await Voucher.createLogic(receiptModel.clientId.toString(), 
-        receiptModel.items, vars.config.voucheType.giftToFriend, 1);
+        receiptModel.items, vars.config.voucherType.giftToFriend, 1);
       // TODO: email voucher details to clientId email
     }
     else if (receiptModel.type === vars.config.receiptType.business) {
       for (let i = 0; i < receiptModel.items.length; i++) {
         let treeModel = receiptModel.items[i];
         await Voucher.createLogic(receiptModel.clientId.toString(), 
-          [treeModel], vars.config.voucheType.business, treeModel.quantity);
+          [treeModel], vars.config.voucherType.business, treeModel.quantity);
         // TODO: email voucher details to clientId email
       }
     }

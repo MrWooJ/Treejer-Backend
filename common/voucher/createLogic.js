@@ -7,7 +7,7 @@ module.exports = async Voucher => {
   const vars = app.vars;
 
   Voucher.createLogic = 
-    async (clientId, treeItems, voucheType, usageCapacity) => {
+    async (clientId, treeItems, voucherType, usageCapacity) => {
     let Client = app.models.client;
     await Client.fetchModel(clientId.toString());
 
@@ -17,7 +17,7 @@ module.exports = async Voucher => {
       createDate: date,
       lastUpdate: date,
       status: vars.config.voucherStatus.available,
-      type: voucheType,
+      type: voucherType,
       numberOfUsage: 0,
       usageCapacity: Number(usageCapacity),
       treeItems,
@@ -47,7 +47,7 @@ module.exports = async Voucher => {
         source: 'body'
       }
     }, {
-      arg: 'voucheType',
+      arg: 'voucherType',
       type: 'string',
       required: true,
       http: {
