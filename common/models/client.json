@@ -61,6 +61,12 @@
       "foreignKey": "clientId"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }
