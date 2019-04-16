@@ -21,7 +21,13 @@ module.exports = async Receipt => {
         'Error! The provided type is not defined.');
     }
 
+    if (!vars.config.receiptMethod[ctx.args.data.method]) {
+      throw createError(404, 
+        'Error! The provided method is not defined.');
+    }
+
     ctx.args.data.type = vars.config.receiptType[ctx.args.data.type];
+    ctx.args.data.method = vars.config.receiptMethod[ctx.args.data.method];
     ctx.args.data.status = vars.config.receiptStatus.pending;
 
     let price = 0;
