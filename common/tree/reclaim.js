@@ -10,7 +10,6 @@ module.exports = async Tree => {
     await Client.fetchModel(clientId.toString());
 
     let Voucher = app.models.voucher;
-    await Voucher.increaseUsage(voucherCode.toString());
     let voucherModel = await Voucher.fetchModel(voucherCode.toString());
 
     if (voucherModel.clientId.toString() === clientId.toString()) {
@@ -26,6 +25,8 @@ module.exports = async Tree => {
 
     let treeList = 
       await Tree.createLogic(clientId.toString(), voucherModel.items);
+     
+    await Voucher.increaseUsage(voucherCode.toString());
 
     return treeList;
   };
