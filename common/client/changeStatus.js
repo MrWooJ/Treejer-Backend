@@ -13,7 +13,7 @@ module.exports = async Client => {
     await Invitation.increaseUsage(invitationCode.toString());
 
     let clientUpdatedModel = await clientModel.updateAttribute(
-      status, vars.config.clientStatus.available);
+      'status', vars.config.clientStatus.available);
 
     return clientUpdatedModel;
   };
