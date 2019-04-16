@@ -16,6 +16,13 @@ module.exports = async Invitation => {
         'Error! The provided status code is not defined.');
     }
 
+    if (newStatus === vars.config.invitationStatus.available &&
+        Number(invitationModel.usageCapacity) <= 
+        Number(invitationModel.numberOfUsage)) {
+      throw createError(400, 
+        'Error! Cannot change status duo to passing the usage capacity.');
+    }
+
     let updatedInvitationModel = await invitationModel.updateAttributes({
       status: newStatus,
       lastUpdate: utility.getUnixTimeStamp()
