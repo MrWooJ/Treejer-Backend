@@ -16,7 +16,7 @@ module.exports = async Receipt => {
       tsyms: 'USD'
     })
     .then(response => {
-      let ethAmount = Number(amount) / Number(response.USD);
+      let ethAmount = Number(amount) / Number(response.body.USD);
       return {
         ethPrice: ethAmount,
         ethExchange: response
