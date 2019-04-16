@@ -11,10 +11,10 @@ module.exports = async Invitation => {
     let invitationModel = 
       await Invitation.fetchModel(invitationCode.toString());
 
-    if (invitationModel.status !== vars.config.invitationStatus.available) {
-      throw createError(400, 
-        'Error! Capacity can be changed only for available invitations.');
-    }
+    // if (invitationModel.status !== vars.config.invitationStatus.available) {
+    //   throw createError(400, 
+    //     'Error! Capacity can be changed only for available invitations.');
+    // }
 
     if (Number(newCapacity) <= Number(invitationModel.numberOfUsage)) {
       throw createError(400, 
