@@ -24,8 +24,8 @@ module.exports = async Tree => {
     receiversList.push(clientId.toString());
     await voucherModel.updateAttribute('receivers', receiversList);
 
-    let treeList = 
-      await Tree.createLogic(clientId.toString(), voucherModel.items);
+    let treeList = await Tree.createLogic(clientId.toString(), 
+      voucherModel.items, voucherModel.type);
      
     await Voucher.increaseUsage(voucherCode.toString());
 

@@ -7,7 +7,7 @@ module.exports = async Tree => {
 
   const vars = app.vars;
 
-  Tree.createLogic = async (clientId, treeItems) => {
+  Tree.createLogic = async (clientId, treeItems, procedure) => {
     let Client = app.models.client;
     await Client.fetchModel(clientId.toString());
 
@@ -16,6 +16,7 @@ module.exports = async Tree => {
       clientId,
       createDate: date,
       lastUpdate: date,
+      procedure,
       status: vars.config.treeStatus.planted,
       planter: vars.const.treejerCompany,
       conserver: vars.const.treejerCompany,
@@ -58,6 +59,13 @@ module.exports = async Tree => {
       required: true,
       http: {
         source: 'body'
+      }
+    }, {
+      arg: 'procedure',
+      type: 'string',
+      required: true,
+      http: {
+        source: 'query'
       }
     }],
     http: {

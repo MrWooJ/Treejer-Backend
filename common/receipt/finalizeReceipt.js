@@ -17,7 +17,7 @@ module.exports = async Receipt => {
     let Voucher = app.models.voucher;
     if (receiptModel.type === vars.config.receiptType.personalForest) {
       await Tree.createLogic(receiptModel.clientId.toString(), 
-        receiptModel.items);
+        receiptModel.items, vars.config.receiptType.personalForest);
       // TODO: email successful operation to user
     }
     else if (receiptModel.type === vars.config.receiptType.giftToFriend) {
@@ -28,8 +28,10 @@ module.exports = async Receipt => {
     else if (receiptModel.type === vars.config.receiptType.business) {
       for (let i = 0; i < receiptModel.items.length; i++) {
         let treeModel = receiptModel.items[i];
+        let numberOfUsages = treeModel.quantity;
+        treeModel.quantity = 1;
         await Voucher.createLogic(receiptModel.clientId.toString(), 
-          [treeModel], vars.config.voucherType.business, treeModel.quantity);
+          [treeModel], vars.config.voucherType.business, numberOfUsages);
         // TODO: email voucher details to clientId email
       }
     }
