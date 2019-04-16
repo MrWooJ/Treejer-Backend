@@ -42,10 +42,6 @@
       "type": "string",
       "required": true
     },
-    "o2RatePerDay": {
-      "type": "number",
-      "required": true
-    },
     "treeHashId": {
       "type": "string",
       "required": true
