@@ -13,6 +13,10 @@ module.exports = async Tree => {
     await Voucher.increaseUsage(voucherCode.toString());
     let voucherModel = await Voucher.fetchModel(voucherCode.toString());
 
+    if (voucherModel.clientId.toString() === clientId.toString()) {
+      throw createError(400, 'Error! You cannot reclaim your own vouchers.');
+    }
+
     if (voucherModel.receivers.indexOf(clientId.toString()) >= 0) {
       throw createError(400, 'Error! You have already claimed the tree.');
     }
