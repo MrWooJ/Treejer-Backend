@@ -10,6 +10,7 @@ module.exports = async Client => {
   Client.createLogic = async ctx => {
     ctx.args.data.emailVerified = true;
     ctx.args.data.status = vars.config.clientStatus.waitList;
+    ctx.args.data.createDate = utility.getUnixTimeStamp();
     ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
     return;
   };

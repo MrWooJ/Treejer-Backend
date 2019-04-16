@@ -43,6 +43,10 @@
       "type": "string",
       "required": true
     },
+    "createDate": {
+      "type": "number",
+      "required": true
+    },
     "lastUpdate": {
       "type": "number",
       "required": true
