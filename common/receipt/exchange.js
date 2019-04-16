@@ -3,26 +3,26 @@ let unirest = require('unirest');
 
 module.exports = async Receipt => {
 
-  Receipt.exchange = async amount => {
-    unirest
-    .get('https://min-api.cryptocompare.com/data/price')
-    .type('json')
-    .headers({ 
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    })
-    .query({
-      fsym: 'ETH',
-      tsyms: 'USD'
-    })
-    .then(response => {
-      let ethAmount = Number(amount) / Number(response.body.USD);
-      return {
-        ethPrice: ethAmount,
-        ethExchange: response
-      };
-    });
-  };
+  Receipt.exchange = async amount => 
+  unirest
+  .get('https://min-api.cryptocompare.com/data/price')
+  .type('json')
+  .headers({ 
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  })
+  .query({
+    fsym: 'ETH',
+    tsyms: 'USD'
+  })
+  .then(response => {
+    let ethAmount = Number(amount) * Number(response.body.USD);
+    return {
+      ethPrice: ethAmount,
+      date: utility.getUnixTimeStamp(),
+      ethExchange: response.body
+    };
+  });
 
   Receipt.exchange = utility.wrapper(Receipt.exchange);
 
