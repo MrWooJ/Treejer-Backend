@@ -33,7 +33,7 @@ module.exports = async Receipt => {
       type: 'string',
       required: true,
       http: {
-        source: 'path'
+        source: 'query'
       }
     }],
     http: {
