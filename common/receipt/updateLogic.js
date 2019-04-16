@@ -38,14 +38,14 @@ module.exports = async Receipt => {
     }
 
     ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
-    
+
     return;
   };
 
   Receipt.updateLogic = utility.wrapper(Receipt.updateLogic);
 
   Receipt.beforeRemote('updateById', async ctx => {
-    validator(ctx.args, {
+    validator(ctx.args.data, {
       white: ['type', 'price', 'items'],
       required: ['type', 'price', 'items']
     });

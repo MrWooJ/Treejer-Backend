@@ -43,7 +43,7 @@ module.exports = async Receipt => {
   Receipt.createLogic = utility.wrapper(Receipt.createLogic);
 
   Receipt.beforeRemote('create', async ctx => {
-    validator(ctx.args, {
+    validator(ctx.args.data, {
       white: ['clientId', 'type', 'price', 'items', 'method'],
       required: ['clientId', 'type', 'price', 'items', 'method']
     });

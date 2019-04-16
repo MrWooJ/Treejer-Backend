@@ -17,7 +17,7 @@ module.exports = async Invitation => {
   Invitation.createLogic = utility.wrapper(Invitation.createLogic);
 
   Invitation.beforeRemote('create', async ctx => {
-    validator(ctx.args, {
+    validator(ctx.args.data, {
       white: ['usageCapacity'],
       required: ['usageCapacity']
     });

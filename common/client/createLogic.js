@@ -17,7 +17,7 @@ module.exports = async Client => {
   Client.createLogic = utility.wrapper(Client.createLogic);
 
   Client.beforeRemote('create', async ctx => {
-    validator(ctx.args, {
+    validator(ctx.args.data, {
       white: ['username', 'email', 'firstname', 'lastname', 'password'],
       required: ['username', 'email', 'firstname', 'lastname', 'password']
     });
