@@ -1,5 +1,6 @@
 const validator = rootRequire('helper/validator');
 const utility = rootRequire('helper/utility');
+let createError = require('http-errors');
 
 let app = rootRequire('server/server');
 
@@ -8,6 +9,11 @@ module.exports = async Invitation => {
   const vars = app.vars;
   
   Invitation.createLogic = async ctx => {
+    if (Number(ctx.args.data.usageCapacity) <= 0) {
+      throw createError(400, 
+        'Error! Usage capacity cannot be lower or equal to zero.');
+    }
+
     ctx.args.data.numberOfUsage = 0;
     ctx.args.data.status = vars.config.invitationStatus.available;
     ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
