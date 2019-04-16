@@ -23,6 +23,7 @@ module.exports = async Invitation => {
 
     let updatedInvitationModel = await invitationModel.updateAttributes({
       usageCapacity: Number(newCapacity),
+      status: vars.config.invitationStatus.available,
       lastUpdate: utility.getUnixTimeStamp()
     });
 
