@@ -16,12 +16,13 @@ module.exports = async Tree => {
       throw createError(400, 'Error! You cannot reclaim your own vouchers.');
     }
 
-    if (voucherModel.receivers.indexOf(clientId.toString()) >= 0) {
+    let receiversList = JSON.parse(JSON.stringify(voucherModel.receivers));
+    if (receiversList.indexOf(clientId.toString()) >= 0) {
       throw createError(400, 'Error! You have already claimed the tree.');
     }
 
-    let updatedReceivers = voucherModel.receivers.push(clientId.toString());
-    await voucherModel.updateAttribute('receivers', updatedReceivers);
+    receiversList.push(clientId.toString());
+    await voucherModel.updateAttribute('receivers', receiversList);
 
     let treeList = 
       await Tree.createLogic(clientId.toString(), voucherModel.items);
