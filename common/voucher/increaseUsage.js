@@ -7,7 +7,7 @@ module.exports = async Voucher => {
 
   const vars = app.vars;
   
-  Voucher.changeCapacity = async voucherCode => {
+  Voucher.increaseUsage = async voucherCode => {
     let voucherModel = 
       await Voucher.fetchModel(voucherCode.toString());
 
@@ -31,7 +31,7 @@ module.exports = async Voucher => {
     return updatedVoucherModel;
   };
 
-  Voucher.changeCapacity = utility.wrapper(Voucher.changeCapacity);
+  Voucher.increaseUsage = utility.wrapper(Voucher.increaseUsage);
 
   Voucher.remoteMethod('increaseUsage', {
     description: 'Increase usages of the Voucher Code by One',
