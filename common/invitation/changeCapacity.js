@@ -42,7 +42,7 @@ module.exports = async Invitation => {
         source: 'path'
       }
     }, {
-      arg: 'newStatus',
+      arg: 'newCapacity',
       type: 'number',
       required: true,
       http: {
