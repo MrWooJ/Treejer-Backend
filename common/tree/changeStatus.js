@@ -18,7 +18,7 @@ module.exports = async Tree => {
     // TODO: BLOCKCHAIN: Change Status of a Tree inside the Blockchain
 
     let updatedTreeModel = await treeModel.updateAttributes({
-      status: newStatus,
+      status: vars.config.treeStatus[newStatus],
       lastUpdate: utility.getUnixTimeStamp()
     });
 

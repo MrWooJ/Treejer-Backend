@@ -17,7 +17,7 @@ module.exports = async Voucher => {
     }
 
     let updatedVoucherModel = await voicherModel.updateAttributes({
-      status: newStatus,
+      status: vars.config.voucherStatus[newStatus],
       lastUpdate: utility.getUnixTimeStamp()
     });
 

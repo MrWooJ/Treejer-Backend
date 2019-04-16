@@ -24,7 +24,7 @@ module.exports = async Invitation => {
     }
 
     let updatedInvitationModel = await invitationModel.updateAttributes({
-      status: newStatus,
+      status: vars.config.invitationStatus[newStatus],
       lastUpdate: utility.getUnixTimeStamp()
     });
 
