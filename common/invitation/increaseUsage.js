@@ -7,7 +7,7 @@ module.exports = async Invitation => {
 
   const vars = app.vars;
   
-  Invitation.changeCapacity = async invitationCode => {
+  Invitation.increaseUsage = async invitationCode => {
     let invitationModel = 
       await Invitation.fetchModel(invitationCode.toString());
 
@@ -31,8 +31,8 @@ module.exports = async Invitation => {
     return updatedInvitationModel;
   };
 
-  Invitation.changeCapacity = 
-    utility.wrapper(Invitation.changeCapacity);
+  Invitation.increaseUsage = 
+    utility.wrapper(Invitation.increaseUsage);
 
   Invitation.remoteMethod('increaseUsage', {
     description: 'Increase usages of the Invitation Code by One',
