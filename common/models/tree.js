@@ -16,6 +16,13 @@ module.exports = async Tree => {
 
 	Tree.validatesInclusionOf('status', { in: statusList });
 
+  let procedureList = [];
+  for (let key in app.vars.config.receiptType) {
+    procedureList.push(app.vars.config.receiptType[key]);
+	}
+
+	Tree.validatesInclusionOf('procedure', { in: procedureList });
+
   require('../tree/changeStatus')(Tree);
   require('../tree/createLogic')(Tree);
   require('../tree/reclaim')(Tree);

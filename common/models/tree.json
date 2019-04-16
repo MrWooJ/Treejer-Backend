@@ -45,6 +45,10 @@
     "treeHashId": {
       "type": "string",
       "required": true
+    },
+    "procedure": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
