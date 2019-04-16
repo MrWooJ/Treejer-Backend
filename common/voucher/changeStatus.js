@@ -16,6 +16,14 @@ module.exports = async Voucher => {
         'Error! The provided status code is not defined.');
     }
 
+    if (vars.config.invitationStatus[newStatus] === 
+      vars.config.invitationStatus.available &&
+      Number(voicherModel.usageCapacity) <= 
+      Number(voicherModel.numberOfUsage)) {
+    throw createError(400, 
+      'Error! Cannot change status duo to passing the usage capacity.');
+    }
+
     let updatedVoucherModel = await voicherModel.updateAttributes({
       status: vars.config.voucherStatus[newStatus],
       lastUpdate: utility.getUnixTimeStamp()
