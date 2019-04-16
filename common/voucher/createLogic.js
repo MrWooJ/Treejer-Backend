@@ -20,7 +20,7 @@ module.exports = async Voucher => {
       type: voucherType,
       numberOfUsage: 0,
       usageCapacity: Number(usageCapacity),
-      treeItems,
+      items: treeItems,
       receivers: []
     };
 
