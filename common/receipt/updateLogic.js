@@ -13,6 +13,12 @@ module.exports = async Receipt => {
       throw createError(400, 'Error! Item list is empty which cannot be.');
     }
 
+    if (!vars.config.receiptType[ctx.args.data.type]) {
+      throw createError(404, 
+        'Error! The provided type is not defined.');
+    }
+    ctx.args.data.type = vars.config.receiptType[ctx.args.data.type];
+
     let receiptModel = await Receipt.fetchModel(ctx.args.data.id.toString());
     if (receiptModel.status !== vars.config.receiptStatus.pending) {
       throw createError(403, 'Error! Only pending receipts can be edited.');
