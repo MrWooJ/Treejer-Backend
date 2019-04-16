@@ -28,11 +28,13 @@ module.exports = async Tree => {
       if (!vars.config.treeType[itemModel.identifier]) {
         throw createError(404, 'Error! Tree type does not recognized.');
       }
-      let data = JSON.parse(JSON.stringify(preData));
-      data.treeHashId = 'N/A';
-      data.type = vars.config.treeType[itemModel.identifier];
-      dataArray.push(data);
-      // TODO: BLOCKCHAIN: Mint a Tree inside the Blockchain
+      for (let j = 0; j < Number(itemModel.quantity); j++) {
+        let data = JSON.parse(JSON.stringify(preData));
+        data.treeHashId = 'N/A';
+        data.type = vars.config.treeType[itemModel.identifier];
+        dataArray.push(data);
+        // TODO: BLOCKCHAIN: Mint a Tree inside the Blockchain  
+      }
     }
 
     let treeList = await Tree.create(dataArray);
