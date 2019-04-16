@@ -9,6 +9,9 @@ module.exports = async Receipt => {
   const vars = app.vars;
 
   Receipt.createLogic = async ctx => {
+    let Client = app.models.client;
+    await Client.fetchModel(ctx.args.data.clientId.toString());
+
     if (ctx.args.data.items.length === 0) {
       throw createError(400, 'Error! Item list is empty which cannot be.');
     }
