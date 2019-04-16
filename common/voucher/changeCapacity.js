@@ -11,10 +11,10 @@ module.exports = async Voucher => {
     let voucherModel = 
       await Voucher.fetchModel(voucherCode.toString());
 
-    if (voucherModel.status !== vars.config.voucherStatus.available) {
-      throw createError(400, 
-        'Error! Capacity can be changed only for available voucher codes.');
-    }
+    // if (voucherModel.status !== vars.config.voucherStatus.available) {
+    //   throw createError(400, 
+    //     'Error! Capacity can be changed only for available voucher codes.');
+    // }
 
     if (Number(newCapacity) <= Number(voucherModel.numberOfUsage)) {
       throw createError(400, 
@@ -23,6 +23,7 @@ module.exports = async Voucher => {
 
     let updatedVoucherModel = await voucherModel.updateAttributes({
       usageCapacity: Number(newCapacity),
+      status: vars.config.invitationStatus.available,
       lastUpdate: utility.getUnixTimeStamp()
     });
 
