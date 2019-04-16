@@ -13,7 +13,8 @@ module.exports = async Voucher => {
 
     if (voucherModel.status !== vars.config.voucherStatus.available) {
       throw createError(400, 
-        'Error! Capacity can be changed only for available vouchers.');
+        'Error! Voucher code is not \
+        available due to reaching the maximum capacity.');
     }
 
     let lastStatus = voucherModel.status;
