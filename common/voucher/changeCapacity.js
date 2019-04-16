@@ -36,14 +36,14 @@ module.exports = async Voucher => {
   Voucher.remoteMethod('changeCapacity', {
     description: 'Change Capacity of the Voucher Code',
     accepts: [{
-      arg: 'invitationCode',
+      arg: 'voucherCode',
       type: 'string',
       required: true,
       http: {
         source: 'path'
       }
     }, {
-      arg: 'newStatus',
+      arg: 'newCapacity',
       type: 'number',
       required: true,
       http: {
