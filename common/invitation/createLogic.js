@@ -16,8 +16,10 @@ module.exports = async Invitation => {
 
     ctx.args.data.numberOfUsage = 0;
     ctx.args.data.status = vars.config.invitationStatus.available;
-    ctx.args.data.createDate = utility.getUnixTimeStamp();
-    ctx.args.data.lastUpdate = utility.getUnixTimeStamp();
+
+    let date = utility.getUnixTimeStamp();
+    ctx.args.data.createDate = date;
+    ctx.args.data.lastUpdate = date;
     return;
   };
 
