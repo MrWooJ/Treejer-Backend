@@ -13,10 +13,10 @@ module.exports = async Receipt => {
   })
   .query({
     fsym: 'ETH',
-    tsyms: 'USD'
+    tsyms: 'EUR'
   })
   .then(response => {
-    let ethAmount = Number(amount) * Number(response.body.USD);
+    let ethAmount = Number(amount) * Number(response.body.EUR);
     return {
       ethPrice: ethAmount,
       date: utility.getUnixTimeStamp(),
