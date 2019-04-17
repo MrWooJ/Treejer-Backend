@@ -5,9 +5,11 @@ let app = rootRequire('server/server');
 
 module.exports = async Tree => {
 
+  const vars = app.vars;
+
   Tree.reclaim = async (clientId, voucherCode) => {
     let Client = app.models.client;
-    await Client.fetchModel(clientId.toString());
+    let clientModel = await Client.fetchModel(clientId.toString());
 
     let Voucher = app.models.voucher;
     let voucherModel = await Voucher.fetchModel(voucherCode.toString());
@@ -28,6 +30,9 @@ module.exports = async Tree => {
       voucherModel.items, voucherModel.type);
      
     await Voucher.increaseUsage(voucherCode.toString());
+
+    await clientModel.updateAttribute('status', 
+      vars.config.clientStatus.available);
 
     return treeList;
   };
