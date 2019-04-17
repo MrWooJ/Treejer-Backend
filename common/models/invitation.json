@@ -41,6 +41,12 @@
       "permission": "DENY"
     },
     {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "sendInvitation"
+    },
+    {
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "admin",
