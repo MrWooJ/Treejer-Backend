@@ -97,6 +97,12 @@
     },
     {
       "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "__get__receipts"
