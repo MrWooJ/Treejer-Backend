@@ -63,5 +63,9 @@
   "comment": {
     "dataSource": "mongoDs",
     "public": true
+  },
+  "subscribe": {
+    "dataSource": "mongoDs",
+    "public": true
   }
 }
