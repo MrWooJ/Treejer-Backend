@@ -11,8 +11,10 @@
     "posttest": "npm run lint"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
+    "fs-extra": "^7.0.1",
     "helmet": "^3.10.0",
     "http-errors": "^1.6.3",
     "loopback": "^3.22.0",
