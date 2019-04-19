@@ -10,7 +10,13 @@ module.exports = async Receipt => {
 
   Receipt.createLogic = async ctx => {
     let Client = app.models.client;
-    await Client.fetchModel(ctx.args.data.clientId.toString());
+    let clientModel = 
+      await Client.fetchModel(ctx.args.data.clientId.toString());
+
+    if (clientModel.status === vars.config.clientStatus.waitList) {
+      throw createError(404, 
+        'Error! You are not yet invited to perform action.');
+    }  
 
     if (ctx.args.data.items.length === 0) {
       throw createError(400, 'Error! Item list is empty which cannot be.');
