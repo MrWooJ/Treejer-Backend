@@ -56,9 +56,9 @@
     "dataSource": "mongoDs",
     "public": true
   },
-  "email": {
+  "emailSender": {
     "dataSource": "emailDs",
-    "public": false
+    "public": true
   },
   "comment": {
     "dataSource": "mongoDs",
