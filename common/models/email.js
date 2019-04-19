@@ -1,3 +1,5 @@
-module.exports = async () => {
+module.exports = async EmailSender => {
+
+  require('../email/sendEmail')(EmailSender);
 
 };
