@@ -71,6 +71,12 @@
       "permission": "DENY"
     },
     {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW",
@@ -81,12 +87,6 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "treeModels"
-    },
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "admin",
-      "permission": "ALLOW"
     }
   ],
   "methods": {}
