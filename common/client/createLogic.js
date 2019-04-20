@@ -1,5 +1,6 @@
 const validator = rootRequire('helper/validator');
 const utility = rootRequire('helper/utility');
+let createError = require('http-errors');
 
 let app = rootRequire('server/server');
 
@@ -8,6 +9,27 @@ module.exports = async Client => {
   const vars = app.vars;
   
   Client.createLogic = async ctx => {
+    let englishRegex = /^[A-Za-z0-9]*$/;
+
+    if (!englishRegex.test(ctx.args.data.username)) {
+      throw createError(400, 
+        'Error! Username contains non english characters.');
+    }
+    if (!englishRegex.test(ctx.args.data.firstname)) {
+      throw createError(400, 
+        'Error! Firstname contains non english characters.');
+    }
+    if (!englishRegex.test(ctx.args.data.lastname)) {
+      throw createError(400, 
+        'Error! Lastname contains non english characters.');
+    }
+
+    ctx.args.data.firstname = ctx.args.data.firstname.charAt(0).toUpperCase() + 
+      ctx.args.data.firstname.slice(1);
+
+    ctx.args.data.lastname = ctx.args.data.lastname.charAt(0).toUpperCase() + 
+      ctx.args.data.lastname.slice(1);
+
     ctx.args.data.emailVerified = true;
     ctx.args.data.status = vars.config.clientStatus.waitList;
     ctx.args.data.createDate = utility.getUnixTimeStamp();
