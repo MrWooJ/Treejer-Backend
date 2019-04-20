@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const utility = rootRequire('helper/utility');
 let createError = require('http-errors');
 
@@ -45,8 +46,12 @@ module.exports = async Tree => {
 
     for (let i = 0; i < treeList.length; i++) {
       let treeModel = treeList[i];
-      await mintTree(treeModel.id, treeModel.clientId, treeModel.createdDate, 
-        treeModel.lastUpdate, treeModel.procedure, treeModel.status, 
+      let hash = crypto.createHash('sha256');
+      hash.update(treeModel.clientId.toString());
+      let address = hash.digest('hex').substring(0, 40);
+      await mintTree(treeModel.id, address, 
+        treeModel.createdDate.toString(), treeModel.lastUpdate.toString(), 
+        treeModel.procedure, treeModel.status, 
         treeModel.planter, treeModel.conserver, treeModel.ranger);
       await setTreeType(treeModel.id, treeModel.type.type, 
         treeModel.type.scientificName, treeModel.type.price, 
