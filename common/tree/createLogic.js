@@ -1,6 +1,9 @@
 const utility = rootRequire('helper/utility');
 let createError = require('http-errors');
 
+const mintTree = require('../../server/blockchain/Tree/mintTree');
+const setTreeType = require('../../server/blockchain/Tree/setTreeType');
+
 let app = rootRequire('server/server');
 
 module.exports = async Tree => {
@@ -32,14 +35,26 @@ module.exports = async Tree => {
       for (let j = 0; j < Number(itemModel.quantity); j++) {
         let data = JSON.parse(JSON.stringify(preData));
         data.id = utility.getUnixTimeStamp();
-        data.treeHashId = 'N/A';
+        data.treeHashId = data.id;
         data.type = vars.config.treeType[itemModel.identifier];
         dataArray.push(data);
-        // TODO: BLOCKCHAIN: Mint a Tree inside the Blockchain  
       }
     }
 
     let treeList = await Tree.create(dataArray);
+
+    for (let i = 0; i < treeList.length; i++) {
+      let treeModel = treeList[i];
+      await mintTree(treeModel.id, treeModel.clientId, treeModel.createdDate, 
+        treeModel.lastUpdate, treeModel.procedure, treeModel.status, 
+        treeModel.planter, treeModel.conserver, treeModel.ranger);
+      await setTreeType(treeModel.id, treeItems.type.type, 
+        treeItems.type.scientificName, treeItems.type.price, 
+        treeItems.type.geolocation, treeItems.type.region, 
+        treeItems.type.drive, treeItems.type.age, 
+        treeItems.type.O2RatePerDay);
+    }
+
     return treeList;
   };
 
