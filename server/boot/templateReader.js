@@ -11,7 +11,6 @@ module.exports = async app => {
   filesInDirectory.forEach(async file => {
     let fileDirectory = await fs.open(directory + '/' + file, 'r+');
     let data = await fs.readFile(fileDirectory);
-    console.log(file.slice(0, -5));
 
     app.templates[file.slice(0, -5)] = data.toString();
 
