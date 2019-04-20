@@ -58,7 +58,7 @@ module.exports = async Tree => {
         treeModel.type.type, treeModel.type.scientificName, 
         Number(treeModel.type.price), treeModel.type.geolocation, 
         treeModel.type.region, treeModel.type.drive, 
-        Number(treeModel.type.age), Number(treeModel.type.O2RatePerDay));
+        Number(treeModel.type.age), Number(treeModel.type.o2RatePerDay));
       console.log('Second: ', secondResponse);
       console.log('----------------');
     }
