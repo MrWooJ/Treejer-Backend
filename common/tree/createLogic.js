@@ -49,15 +49,15 @@ module.exports = async Tree => {
       let hash = crypto.createHash('sha256');
       hash.update(treeModel.clientId.toString());
       let address = hash.digest('hex').substring(0, 40);
-      await mintTree(treeModel.id, address, 
+      await mintTree(Number(treeModel.id), address, 
         treeModel.createDate.toString(), treeModel.lastUpdate.toString(), 
         treeModel.procedure, treeModel.status, 
         treeModel.planter, treeModel.conserver, treeModel.ranger);
-      await setTreeType(treeModel.id, treeModel.type.type, 
-        treeModel.type.scientificName, treeModel.type.price, 
+      await setTreeType(Number(treeModel.id), treeModel.type.type, 
+        treeModel.type.scientificName, Number(treeModel.type.price), 
         treeModel.type.geolocation, treeModel.type.region, 
-        treeModel.type.drive, treeModel.type.age, 
-        treeModel.type.O2RatePerDay);
+        treeModel.type.drive, Number(treeModel.type.age), 
+        Number(treeModel.type.O2RatePerDay));
     }
 
     return treeList;
