@@ -31,6 +31,7 @@ module.exports = async Tree => {
       }
       for (let j = 0; j < Number(itemModel.quantity); j++) {
         let data = JSON.parse(JSON.stringify(preData));
+        data.id = utility.getUnixTimeStamp();
         data.treeHashId = 'N/A';
         data.type = vars.config.treeType[itemModel.identifier];
         dataArray.push(data);
