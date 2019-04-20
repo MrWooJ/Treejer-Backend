@@ -23,7 +23,7 @@ module.exports = async EmailSender => {
     $('#TRJ_CTA').attr('href', 
       'http://treejer.com/sign-in?referral=' + invitationCode);
 
-    await EmailSender.sendMail(clientModel.email.toString(), 
+    await EmailSender.sendEmail(clientModel.email.toString(), 
       'Treejer: Invitation to Planet', $.html());
 
     return true;

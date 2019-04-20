@@ -7,7 +7,7 @@ module.exports = async EmailSender => {
 
   EmailSender.sendFinalizedBusinessReceiptEmail =
     async (clientId, receiptId) => {
-      
+
     let Client = app.models.client;
     let clientModel = 
       await Client.fetchModel(clientId.toString());
@@ -26,7 +26,7 @@ module.exports = async EmailSender => {
     $('#TRJ_CTA').text('Enter Planet');
     $('#TRJ_CTA').attr('href', 'http://treejer.com/planet');
 
-    await EmailSender.sendMail(clientModel.email.toString(), 
+    await EmailSender.sendEmail(clientModel.email.toString(), 
       'Treejer: Receipt Approval', $.html());
 
     return true;

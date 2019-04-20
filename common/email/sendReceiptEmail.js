@@ -24,7 +24,7 @@ module.exports = async EmailSender => {
     $('#TRJ_CTA').text('Enter Planet');
     $('#TRJ_CTA').attr('href', 'http://treejer.com/planet');
 
-    await EmailSender.sendMail(clientModel.email.toString(), 
+    await EmailSender.sendEmail(clientModel.email.toString(), 
       'Treejer: Invoice Recorded', $.html());
 
     return true;
