@@ -8,7 +8,7 @@ module.exports = async Invitation => {
   
   Invitation.sendInvitation = async clientId => {
     let Client = app.models.client;
-    let clientModel = await Client.fetchModel(clientId.toString());
+    await Client.fetchModel(clientId.toString());
 
     let date = utility.getUnixTimeStamp();
     let invitationModel = await Invitation.create({
@@ -21,7 +21,7 @@ module.exports = async Invitation => {
     
     let EmailSender = app.models.emailSender;
     await EmailSender.sendSignInEmail(
-      clientModel.email.toString(), invitationModel.id.toString());
+      clientId.toString(), invitationModel.id.toString());
 
     return invitationModel;
   };

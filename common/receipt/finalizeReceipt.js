@@ -26,14 +26,14 @@ module.exports = async Receipt => {
         receiptModel.items, vars.config.receiptType.personalForest);
 
       await EmailSender.sendFinalizedClientReceiptEmail(
-        clientModel.email.toString(), receiptModel.id.toString());
+        clientModel.id.toString(), receiptModel.id.toString());
     }
     else if (receiptModel.type === vars.config.receiptType.giftToFriend) {
       await Voucher.createLogic(receiptModel.clientId.toString(), 
         receiptModel.items, vars.config.voucherType.giftToFriend, 1);
 
       await EmailSender.sendFinalizedGiftReceiptEmail(
-        clientModel.email.toString(), receiptModel.id.toString());
+        clientModel.id.toString(), receiptModel.id.toString());
     }
     else if (receiptModel.type === vars.config.receiptType.business) {
       for (let i = 0; i < receiptModel.items.length; i++) {
@@ -42,9 +42,9 @@ module.exports = async Receipt => {
         treeModel.quantity = 1;
         await Voucher.createLogic(receiptModel.clientId.toString(), 
           [treeModel], vars.config.voucherType.business, numberOfUsages);
-          
+
         await EmailSender.sendFinalizedBusinessReceiptEmail(
-          clientModel.email.toString(), receiptModel.id.toString());
+          clientModel.id.toString(), receiptModel.id.toString());
       }
     }
 
