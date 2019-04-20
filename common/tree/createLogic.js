@@ -50,7 +50,7 @@ module.exports = async Tree => {
       hash.update(treeModel.clientId.toString());
       let address = hash.digest('hex').substring(0, 40);
       await mintTree(treeModel.id, address, 
-        treeModel.createdDate.toString(), treeModel.lastUpdate.toString(), 
+        treeModel.createDate.toString(), treeModel.lastUpdate.toString(), 
         treeModel.procedure, treeModel.status, 
         treeModel.planter, treeModel.conserver, treeModel.ranger);
       await setTreeType(treeModel.id, treeModel.type.type, 
