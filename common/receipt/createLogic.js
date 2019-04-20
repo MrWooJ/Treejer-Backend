@@ -72,4 +72,14 @@ module.exports = async Receipt => {
     await Receipt.createLogic(ctx);
   });
 
+  Receipt.afterRemote('create', async (ctx, modelInstance) => {
+    let Client = app.models.client;
+    let clientModel = 
+      await Client.fetchModel(modelInstance.clientId.toString());
+
+    let EmailSender = app.models.emailSender;
+    await EmailSender.sendReceiptEmail(
+      clientModel.email.toString(), modelInstance.id.toString());
+  });
+
 };
