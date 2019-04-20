@@ -34,7 +34,7 @@ module.exports = async Tree => {
       }
       for (let j = 0; j < Number(itemModel.quantity); j++) {
         let data = JSON.parse(JSON.stringify(preData));
-        data.id = utility.getUnixTimeStamp() + j * j;
+        data.id = utility.getUnixTimeStamp() + j * j * i;
         data.treeHashId = data.id;
         data.type = vars.config.treeType[itemModel.identifier];
         dataArray.push(data);
@@ -48,11 +48,11 @@ module.exports = async Tree => {
       await mintTree(treeModel.id, treeModel.clientId, treeModel.createdDate, 
         treeModel.lastUpdate, treeModel.procedure, treeModel.status, 
         treeModel.planter, treeModel.conserver, treeModel.ranger);
-      await setTreeType(treeModel.id, treeItems.type.type, 
-        treeItems.type.scientificName, treeItems.type.price, 
-        treeItems.type.geolocation, treeItems.type.region, 
-        treeItems.type.drive, treeItems.type.age, 
-        treeItems.type.O2RatePerDay);
+      await setTreeType(treeModel.id, treeModel.type.type, 
+        treeModel.type.scientificName, treeModel.type.price, 
+        treeModel.type.geolocation, treeModel.type.region, 
+        treeModel.type.drive, treeModel.type.age, 
+        treeModel.type.O2RatePerDay);
     }
 
     return treeList;
