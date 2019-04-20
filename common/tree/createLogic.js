@@ -56,7 +56,7 @@ module.exports = async Tree => {
       console.log('FIRST: ', firstResponse);
       let secondResponse = await setTreeType(Number(treeModel.id), 
         treeModel.type.type, treeModel.type.scientificName, 
-        Number(treeModel.type.price), treeModel.type.geolocation, 
+        Number(treeModel.type.price), treeModel.type.geoLocation, 
         treeModel.type.region, treeModel.type.drive, 
         Number(treeModel.type.age), Number(treeModel.type.o2RatePerDay));
       console.log('Second: ', secondResponse);
