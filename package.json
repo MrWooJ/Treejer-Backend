@@ -24,6 +24,7 @@
     "loopback-connector-mongodb": "^3.9.2",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^3.0.0",
+    "tronweb": "^2.3.7",
     "unirest": "^0.6.0"
   },
   "devDependencies": {
