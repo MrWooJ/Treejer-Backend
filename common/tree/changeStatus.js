@@ -15,8 +15,6 @@ module.exports = async Tree => {
         'Error! The provided status code is not defined.');
     }
 
-    // TODO: BLOCKCHAIN: Change Status of a Tree inside the Blockchain
-
     let updatedTreeModel = await treeModel.updateAttributes({
       status: vars.config.treeStatus[newStatus],
       lastUpdate: utility.getUnixTimeStamp()
