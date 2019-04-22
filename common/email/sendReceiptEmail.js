@@ -34,7 +34,7 @@ module.exports = async EmailSender => {
 
     $('#TRJ_Headline').text('New Pending Invoice from Treejer ');
     $('#TRJ_Title').text('Dear, ' + clientModel.firstname + ',');
-    $('#TRJ_Message').text(message);
+    $('#TRJ_Message').text('<b>message</b>');
     $('#TRJ_CTA').text('Enter Planet');
     $('#TRJ_CTA').attr('href', 'http://treejer.com/planet');
 
