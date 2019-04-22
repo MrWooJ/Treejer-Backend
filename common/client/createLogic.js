@@ -13,15 +13,18 @@ module.exports = async Client => {
 
     if (!englishRegex.test(ctx.args.data.username)) {
       throw createError(400, 
-        'Error! Username contains non english characters.');
+        'Error! Please change your keyboard language to English. \
+        No special character is accepted.');
     }
     if (!englishRegex.test(ctx.args.data.firstname)) {
       throw createError(400, 
-        'Error! Firstname contains non english characters.');
+        'Error! Please change your keyboard language to English. \
+        No special character is accepted.');
     }
     if (!englishRegex.test(ctx.args.data.lastname)) {
       throw createError(400, 
-        'Error! Lastname contains non english characters.');
+        'Error! Please change your keyboard language to English. \
+        No special character is accepted.');
     }
 
     ctx.args.data.firstname = ctx.args.data.firstname.charAt(0).toUpperCase() + 
