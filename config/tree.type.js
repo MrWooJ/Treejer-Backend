@@ -7,7 +7,7 @@ module.exports = {
     region: 'Golestan, Iran',
     drive: 'Tangrah Village',
     age: 1,
-    o2RatePerDay: 2.5
+    o2RatePerDay: 3
   },
   treeNo2: {
     type: 'Jujube',
@@ -17,7 +17,7 @@ module.exports = {
     region: 'Kerman, Iran',
     drive: 'Ghalehganj Village',
     age: 1,
-    o2RatePerDay: 2.1
+    o2RatePerDay: 2
   },
   treeNo3: {
     type: 'Jujube',
@@ -27,6 +27,6 @@ module.exports = {
     region: 'Sistan and Baluchestan, Iran',
     drive: 'Seydbar Village',
     age: 1,
-    o2RatePerDay: 2.3
+    o2RatePerDay: 2
   }
 };
