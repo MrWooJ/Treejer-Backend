@@ -18,10 +18,7 @@ module.exports = async EmailSender => {
       return `Your recently submitted order ${orderNumber} is pending. Please proceed the payment in 24 hour. ${treeCount} trees valued at ${totalPrice} will be added to your forest after confirmation.\nPay with Visa/Master Card:\n${fiatPaymentInfo}\nPay with Ethereum:\n${ethereumPaymentInfo}\n\nIMPORTANT\nAfter 24 hours this invoice will be expired and you need to make a new one.` //eslint-disable-line
     }
 
-    let fiatPayment = `Account Number: 0000045558334545
-    NIB: 0023 0000 45558334545 94
-    IBAN: PT50 0023 0000 4555 8334 5459 4
-    SWIFT: ACTVPTPL`;
+    let fiatPayment = `Account Number: 0000045558334545\nNIB: 0023 0000 45558334545 94\nIBAN: PT50 0023 0000 4555 8334 5459 4\nSWIFT: ACTVPTPL`; //eslint-disable-line
     let etherPayment = '0x0e6E90dD9Cb928f34c1E6E5d0E2724890D273D88';
 
     let treeNumber = 0;

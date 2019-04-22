@@ -18,12 +18,12 @@ module.exports = async EmailSender => {
     await Receipt.fetchModel(receiptId.toString());
 
     function messageLoader(orderNumber, voucherData) {
-      return `Your recent order payment is confirmed and the following vouchers are generated for you. You can distribute them now!\nVouchers:\n${voucherData}Order Number: <b>${orderNumber}</b>`; //eslint-disable-line
+      return `Your recent order payment is confirmed and the following vouchers are generated for you. You can distribute them now!\nVouchers:\n${voucherData}Order Number: ${orderNumber}`; //eslint-disable-line
     }
 
     function voucherLoader(row, voucherCode, capacityNumber, 
       unitPrice, treeName, treeLocation) {
-      return `${row}. <b>${voucherCode}</b> for <b>${capacityNumber}</b> people - <b>${unitPrice}</b> <b>${treeName}</b> in <b>${treeLocation}</b>\n`; //eslint-disable-line
+      return `${row}. ${voucherCode} for ${capacityNumber} people - ${unitPrice} ${treeName} in ${treeLocation}\n`; //eslint-disable-line
     }
 
     let voucherString = '';

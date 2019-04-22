@@ -14,7 +14,7 @@ module.exports = async EmailSender => {
     let receiptModel = await Receipt.fetchModel(receiptId.toString());
 
     function messageLoader(treeCount, price, orderNumber) {
-      return `Your recent order payment is confirmed and <b>${treeCount}</b> valued at <b>${price}</b> will be added to your forest.\n\nOrder number: <b>${orderNumber}</b>`; // eslint-disable-line
+      return `Your recent order payment is confirmed and ${treeCount} valued at ${price} will be added to your forest.\n\nOrder number: ${orderNumber}`; // eslint-disable-line
     }
 
     let treeCount = 0;
@@ -27,7 +27,7 @@ module.exports = async EmailSender => {
 
     $('#TRJ_Headline').text('New Payment Confirmed - Treejer');
     $('#TRJ_Title').text('Dear ' + clientModel.firstname + ',');
-    $('#TRJ_Message').text('<b>asdasdasdasd</b>');
+    $('#TRJ_Message').text(message);
     $('#TRJ_CTA').text('Visit Forest');
     $('#TRJ_CTA').attr('href', 'http://treejer.com/planet');
 
