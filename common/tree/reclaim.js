@@ -20,7 +20,7 @@ module.exports = async Tree => {
 
     let receiversList = JSON.parse(JSON.stringify(voucherModel.receivers));
     if (receiversList.indexOf(clientId.toString()) >= 0) {
-      throw createError(400, 'Error! You have already claimed the tree.');
+      throw createError(400, 'Error! You have already claimed this voucher.');
     }
 
     receiversList.push(clientId.toString());

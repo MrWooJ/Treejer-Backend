@@ -15,7 +15,7 @@ module.exports = async Receipt => {
 
     if (clientModel.status === vars.config.clientStatus.waitList) {
       throw createError(404, 
-        'Error! You are not yet invited to perform action.');
+        'Error! Sorry, you need an invitation to submit an invoice.');
     }  
 
     if (ctx.args.data.items.length === 0) {
@@ -24,12 +24,12 @@ module.exports = async Receipt => {
 
     if (!vars.config.receiptType[ctx.args.data.type]) {
       throw createError(404, 
-        'Error! The provided type is not defined.');
+        'Error! The receipt type is not defined and is invalid.');
     }
 
     if (!vars.config.receiptMethod[ctx.args.data.method]) {
       throw createError(404, 
-        'Error! The provided method is not defined.');
+        'Error! The provided method is not defined and is invalid.');
     }
 
     ctx.args.data.type = vars.config.receiptType[ctx.args.data.type];

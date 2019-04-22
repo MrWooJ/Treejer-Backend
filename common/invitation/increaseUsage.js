@@ -13,8 +13,8 @@ module.exports = async Invitation => {
 
     if (invitationModel.status !== vars.config.invitationStatus.available) {
       throw createError(400, 
-        'Error! Invitation code is not \
-        available due to reaching the maximum capacity.');
+        'Error! The invitation link you are using is not \
+        valid anymore.');
     }
 
     let lastStatus = invitationModel.status;
