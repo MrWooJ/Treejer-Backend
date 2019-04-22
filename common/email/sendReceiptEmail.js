@@ -18,7 +18,10 @@ module.exports = async EmailSender => {
       return `Your recently submitted order <b>${orderNumber}</b> is pending. Please proceed the payment in 24 hour. <b>${treeCount}</b> trees valued at <b>${totalPrice}</b> will be added to your forest after confirmation.<br>Pay with Visa/Master Card:<br><b>${fiatPaymentInfo}</b><br>Pay with Ethereum:<br><b>${ethereumPaymentInfo}</b><br><br>IMPORTANT<br>After 24 hours this invoice will be expired and you need to make a new one.` //eslint-disable-line
     }
 
-    let fiatPayment = `Account Number: 0000045558334545<br>NIB: 0023 0000 45558334545 94<br>IBAN: PT50 0023 0000 4555 8334 5459 4<br>SWIFT: ACTVPTPL`; //eslint-disable-line
+    let fiatPayment = `Account Number: 0000045558334545
+    NIB: 0023 0000 45558334545 94
+    IBAN: PT50 0023 0000 4555 8334 5459 4
+    SWIFT: ACTVPTPL`;
     let etherPayment = '0x0e6E90dD9Cb928f34c1E6E5d0E2724890D273D88';
 
     let treeNumber = 0;
@@ -34,7 +37,7 @@ module.exports = async EmailSender => {
 
     $('#TRJ_Headline').text('New Pending Invoice from Treejer ');
     $('#TRJ_Title').text('Dear, ' + clientModel.firstname + ',');
-    $('#TRJ_Message').text('<b>message</b>');
+    $('#TRJ_Message').text(fiatPayment);
     $('#TRJ_CTA').text('Enter Planet');
     $('#TRJ_CTA').attr('href', 'http://treejer.com/planet');
 
