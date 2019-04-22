@@ -11,21 +11,28 @@ module.exports = async EmailSender => {
       await Client.fetchModel(clientId.toString());
     
     let Receipt = app.models.receipt;
-    await Receipt.fetchModel(receiptId.toString());
+    let receiptModel = await Receipt.fetchModel(receiptId.toString());
+
+    function messageLoader(treeCount, price, orderNumber) {
+      return `Your recent order payment is confirmed and <b>${treeCount}</b> valued at <b>${price}</b> will be added to your forest.\n\nOrder number: <b>${orderNumber}</b>`; // eslint-disable-line
+    }
+
+    let treeCount = 0;
+    for (let i = 0; i < receiptModel.items.length; i++) {
+      treeCount += Number(receiptModel.items[i].quantity);
+    }
+    let message = messageLoader(treeCount, receiptModel.price, receiptId);
 
     const $ = cheerio.load(app.templates.index);
 
-    let message = 'Your receipt is finalized as bellow, \
-      bluh bluh bluh, enter the planet now.';
-
-    $('#TRJ_Heading').text('Receipt Approval');
-    $('#TRJ_Title').text(clientModel.firstname + ',');
+    $('#TRJ_Heading').text('New Payment Confirmed - Treejer');
+    $('#TRJ_Title').text('Dear ' + clientModel.firstname + ',');
     $('#TRJ_Message').text(message);
-    $('#TRJ_CTA').text('Enter Planet');
+    $('#TRJ_CTA').text('Visit Forest');
     $('#TRJ_CTA').attr('href', 'http://treejer.com/planet');
 
     await EmailSender.sendEmail(clientModel.email.toString(), 
-      'Treejer: Receipt Approval', $.html());
+      'Treejer: New Payment Confirmed', $.html());
 
     return true;
   };

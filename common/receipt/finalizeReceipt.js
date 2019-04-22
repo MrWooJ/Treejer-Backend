@@ -10,7 +10,7 @@ module.exports = async Receipt => {
   Receipt.finalizeReceipt = async receiptId => {
     let receiptModel = await Receipt.fetchModel(receiptId.toString());
     if (receiptModel.status !== vars.config.receiptStatus.pending) {
-      throw createError(403, 'Error! Only pending receipts can be finalized.');
+      throw createError(403, 'Error! This invoice has been confirmed before.');
     }
 
     let Client = app.models.client;
@@ -29,23 +29,26 @@ module.exports = async Receipt => {
         clientModel.id.toString(), receiptModel.id.toString());
     }
     else if (receiptModel.type === vars.config.receiptType.giftToFriend) {
-      await Voucher.createLogic(receiptModel.clientId.toString(), 
+      let voucherModel = 
+        await Voucher.createLogic(receiptModel.clientId.toString(), 
         receiptModel.items, vars.config.voucherType.giftToFriend, 1);
 
       await EmailSender.sendFinalizedGiftReceiptEmail(
-        clientModel.id.toString(), receiptModel.id.toString());
+        clientModel.id.toString(), receiptModel.id.toString(), voucherModel);
     }
     else if (receiptModel.type === vars.config.receiptType.business) {
+      let vouchersArray = [];
       for (let i = 0; i < receiptModel.items.length; i++) {
         let treeModel = receiptModel.items[i];
         let numberOfUsages = treeModel.quantity;
         treeModel.quantity = 1;
-        await Voucher.createLogic(receiptModel.clientId.toString(), 
+        let voucherModel = 
+          await Voucher.createLogic(receiptModel.clientId.toString(), 
           [treeModel], vars.config.voucherType.business, numberOfUsages);
-
-        await EmailSender.sendFinalizedBusinessReceiptEmail(
-          clientModel.id.toString(), receiptModel.id.toString());
+        vouchersArray.push(voucherModel);
       }
+      await EmailSender.sendFinalizedBusinessReceiptEmail(
+        clientModel.id.toString(), receiptModel.id.toString(), vouchersArray);
     }
 
     let updatedReceiptModel = await receiptModel.updateAttributes({

@@ -14,10 +14,10 @@ module.exports = async EmailSender => {
     
     const $ = cheerio.load(app.templates.index);
 
-    let message = 'You are invited to planet to use.';
+    let message = 'You have been invited to Treejer. Please sign in and add trees to your forest.'; //eslint-disable-line
 
-    $('#TRJ_Heading').text('Invitation to Planet');
-    $('#TRJ_Title').text(clientModel.firstname + ',');
+    $('#TRJ_Heading').text('You are Invited to Treejer Now!');
+    $('#TRJ_Title').text('Dear ' + clientModel.firstname + ',');
     $('#TRJ_Message').text(message);
     $('#TRJ_CTA').text('Sign In Now!');
     $('#TRJ_CTA').attr('href', 

@@ -5,7 +5,10 @@ let app = rootRequire('server/server');
 
 module.exports = async EmailSender => {
 
-  EmailSender.sendFinalizedGiftReceiptEmail = async (clientId, receiptId) => {
+  const vars = app.vars;
+
+  EmailSender.sendFinalizedGiftReceiptEmail = 
+    async (clientId, receiptId, voucherModel) => {
     let Client = app.models.client;
     let clientModel = 
       await Client.fetchModel(clientId.toString());
@@ -13,19 +16,34 @@ module.exports = async EmailSender => {
     let Receipt = app.models.receipt;
     await Receipt.fetchModel(receiptId.toString());
 
+    function messageLoader(voucherCode, voucherData, orderNumber) {
+      return `Your recent order payment is confirmed and the following voucher is generated for you. You can send it as a gift to your friend now!\nVoucher:\n<b>${voucherCode}</b> for <b>1</b> friend - including trees:\n${voucherData}Order Number: <b>${orderNumber}</b>`; //eslint-disable-line
+    }
+
+    function voucherLoader(treeQuantity, treeName, unitPrice, treeLocation) {
+      return `<b>${treeQuantity}</b> <b>${treeName}</b> for <b>${unitPrice}</b> unit price in <b>${treeLocation}</b>\n`; //eslint-disable-line
+    }
+
+    let voucherString = '';
+    for (let i = 0; i < voucherModel.items.length; i++) {
+      let treeModel = voucherModel.items[i];
+      let treeType = vars.config.treeType[treeModel.identifier];
+      voucherString += voucherLoader(treeModel.quantity, 
+        treeType.type, treeType.price, treeType.region);
+    }
+
+    let message = messageLoader(voucherModel.id, voucherString, receiptId);
+
     const $ = cheerio.load(app.templates.index);
 
-    let message = 'Your receipt is finalized as bellow, \
-      bluh bluh bluh, enter the planet now.';
-
-    $('#TRJ_Heading').text('Receipt Approval');
-    $('#TRJ_Title').text(clientModel.firstname + ',');
+    $('#TRJ_Heading').text('Your New Treejer Voucher Has Arrived!');
+    $('#TRJ_Title').text('Dear ' + clientModel.firstname + ',');
     $('#TRJ_Message').text(message);
     $('#TRJ_CTA').text('Enter Planet');
     $('#TRJ_CTA').attr('href', 'http://treejer.com/planet');
 
     await EmailSender.sendEmail(clientModel.email.toString(), 
-      'Treejer: Receipt Approval', $.html());
+      'Treejer: New Payment Confirmed - Voucher is Ready', $.html());
 
     return true;
   };
