@@ -5,10 +5,7 @@ let app = rootRequire('server/server');
 
 module.exports = async EmailSender => {
 
-  EmailSender.sendSignInEmail = async (clientId, invitationCode) => {
-    let Client = app.models.client;
-    let clientModel = await Client.fetchModel(clientId.toString());
-    
+  EmailSender.sendSignInEmail = async (emailAddress, invitationCode) => {    
     let Invitation = app.models.invitation;
     await Invitation.fetchModel(invitationCode.toString());
     
@@ -17,13 +14,13 @@ module.exports = async EmailSender => {
     let message = 'You have been invited to Treejer. Please sign in and add trees to your forest.'; //eslint-disable-line
 
     $('#TRJ_Heading').text('You are Invited to Treejer Now!');
-    $('#TRJ_Title').text('Dear ' + clientModel.firstname + ',');
+    $('#TRJ_Title').text('Dear Guest,');
     $('#TRJ_Message').text(message);
     $('#TRJ_CTA').text('Sign In Now!');
     $('#TRJ_CTA').attr('href', 
       'http://treejer.com/sign-in?referral=' + invitationCode);
 
-    await EmailSender.sendEmail(clientModel.email.toString(), 
+    await EmailSender.sendEmail(emailAddress.toString(), 
       'Treejer: Invitation to Planet', $.html());
 
     return true;
@@ -35,7 +32,7 @@ module.exports = async EmailSender => {
   EmailSender.remoteMethod('sendSignInEmail', {
     description: 'Send Sample Email',
     accepts: [{
-      arg: 'clientId',
+      arg: 'emailAddress',
       type: 'string',
       required: true,
       http: {
@@ -50,7 +47,7 @@ module.exports = async EmailSender => {
       }
     }],
     http: {
-      path: '/:clientId/sendSignInEmail/:invitationCode',
+      path: '/:emailAddress/sendSignInEmail/:invitationCode',
       verb: 'POST',
       status: 200,
       errorStatus: 400

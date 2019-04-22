@@ -6,10 +6,7 @@ module.exports = async Invitation => {
 
   const vars = app.vars;
   
-  Invitation.sendInvitation = async clientId => {
-    let Client = app.models.client;
-    await Client.fetchModel(clientId.toString());
-
+  Invitation.sendInvitation = async emailAddress => {
     let date = utility.getUnixTimeStamp();
     let invitationModel = await Invitation.create({
       usageCapacity: 1,
@@ -21,7 +18,7 @@ module.exports = async Invitation => {
     
     let EmailSender = app.models.emailSender;
     await EmailSender.sendSignInEmail(
-      clientId.toString(), invitationModel.id.toString());
+      emailAddress.toString(), invitationModel.id.toString());
 
     return invitationModel;
   };
@@ -32,7 +29,7 @@ module.exports = async Invitation => {
   Invitation.remoteMethod('sendInvitation', {
     description: 'Send an invitation to this email address',
     accepts: [{
-      arg: 'clientId',
+      arg: 'emailAddress',
       type: 'string',
       required: true,
       http: {
@@ -40,7 +37,7 @@ module.exports = async Invitation => {
       }
     }],
     http: {
-      path: '/sendInvitation/:clientId',
+      path: '/sendInvitation/:emailAddress',
       verb: 'POST',
       status: 200,
       errorStatus: 400
