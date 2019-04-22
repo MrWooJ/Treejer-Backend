@@ -13,7 +13,7 @@ module.exports = async EmailSender => {
 
     let message = 'You have been invited to Treejer. Please sign in and add trees to your forest.'; //eslint-disable-line
 
-    $('#TRJ_Heading').text('You are Invited to Treejer Now!');
+    $('#TRJ_Headline').text('You are Invited to Treejer Now!');
     $('#TRJ_Title').text('Dear Guest,');
     $('#TRJ_Message').text(message);
     $('#TRJ_CTA').text('Sign In Now!');

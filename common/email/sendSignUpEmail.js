@@ -16,7 +16,7 @@ module.exports = async EmailSender => {
 
     let message = 'You are invited to planet to use.';
 
-    $('#TRJ_Heading').text('Invitation to Planet');
+    $('#TRJ_Headline').text('Invitation to Planet');
     $('#TRJ_Title').text(clientModel.firstname + ',');
     $('#TRJ_Message').text(message);
     $('#TRJ_CTA').text('Sign Up Now!');

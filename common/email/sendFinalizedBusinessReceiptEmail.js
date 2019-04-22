@@ -39,7 +39,7 @@ module.exports = async EmailSender => {
 
     const $ = cheerio.load(app.templates.index);
 
-    $('#TRJ_Heading').text('Your New Treejer Vouchers Have Arrived!');
+    $('#TRJ_Headline').text('Your New Treejer Vouchers Have Arrived!');
     $('#TRJ_Title').text('Dear ' + clientModel.firstname + ',');
     $('#TRJ_Message').text(message);
     $('#TRJ_CTA').text('Enter Planet');

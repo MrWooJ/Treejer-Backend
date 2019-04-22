@@ -32,7 +32,7 @@ module.exports = async EmailSender => {
     let message = messageLoader(receiptId, treeNumber, 
       receiptModel.price, fiatPayment, etherPayment);
 
-    $('#TRJ_Heading').text('New Pending Invoice from Treejer ');
+    $('#TRJ_Headline').text('New Pending Invoice from Treejer ');
     $('#TRJ_Title').text('Dear, ' + clientModel.firstname + ',');
     $('#TRJ_Message').text(message);
     $('#TRJ_CTA').text('Enter Planet');
